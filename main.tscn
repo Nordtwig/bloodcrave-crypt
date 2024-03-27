@@ -1,8 +1,5 @@
 [gd_scene load_steps=6 format=3 uid="uid://djret4h8i2aej"]
 
-[ext_resource type="PackedScene" uid="uid://o0h48yvd4uoq" path="res://tile.tscn" id="1_446sr"]
-[ext_resource type="Script" path="res://main.gd" id="1_md43n"]
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vucrj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,9 +13,14 @@ sky = SubResource("Sky_ct8e2")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afrrk"]
+albedo_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xv3w2"]
+material = SubResource("StandardMaterial3D_afrrk")
+size = Vector2(20, 20)
+
 [node name="Main" type="Node3D"]
-script = ExtResource("1_md43n")
-tile_scene = ExtResource("1_446sr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -29,3 +31,6 @@ environment = SubResource("Environment_6hh30")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.424231, 0.608331, -0.670792, 0, 0.740753, 0.671778, 0.905554, 0.284989, -0.314251, -8.92789, 7.60821, -2.77611)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xv3w2")
